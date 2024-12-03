@@ -1,0 +1,592 @@
+/*@define-color custom rgb (181, 171, 156);
+
+#clock {
+	color: @custom
+}
+
+
+
+
+@define-color bgcolor #274b47;
+@define-color bdcolor #9f9881;
+@define-color bdcolorh #ECE1C0;
+@define-color tcolor #ECE0BA;
+*/
+
+@define-color bgcolor #32323c;
+@define-color bdcolor #646464;
+@define-color bdcolorh #ffffff;
+@define-color tcolor #ffffff;
+
+/*
+kashmir foggy forest
+@define-color bgcolor #3D4A5B;
+@define-color bdcolor #6594AC;
+@define-color bdcolorh #97c9ff;
+@define-color tcolor #8bb9ea;
+*/
+
+
+/*
+witch
+@define-color bgcolor #484945;
+@define-color bdcolor #a5a255;
+@define-color bdcolorh #ffff7f;
+@define-color tcolor #d1cf6c;
+*/
+
+/*
+jinx
+@define-color bgcolor #454F65;
+@define-color bdcolor #F5D6DD;
+@define-color bdcolorh #cdeeff;
+@define-color tcolor #B1BCE2;
+*/
+
+/*
+fuji
+@define-color bgcolor #33334C;
+@define-color bdcolor #946DC3;
+@define-color bdcolorh #CF92C6;
+@define-color tcolor #D6B4FF;
+*/
+
+
+
+/*
+volcano
+@define-color bgcolor #3a506c;
+@define-color bdcolor #f7e0d2;
+@define-color bdcolorh #ffffff;
+@define-color tcolor #f7e0d2;
+*/
+
+
+/*
+pink
+@define-color bgcolor #8E6879;
+@define-color bdcolor #D49188;
+@define-color bdcolorh #F5D7D6;
+@define-color tcolor #F5DCDB;
+*/
+
+
+/*
+valley
+@define-color bgcolor #303936;
+@define-color bdcolor #917559;
+@define-color bdcolorh #ffcb9d;
+@define-color tcolor #b4916f;
+*/
+/*
+waterfall
+@define-color bgcolor rgb(42,42,68);
+@define-color bdcolor rgb(180,170,255);
+@define-color bdcolorh rgb(254,215,163);
+@define-color tcolor rgb(200,200,200);
+*/
+
+/*girl with hand fan
+@define-color bgcolor rgb(109,131,101);
+@define-color bdcolor rgb(100,100,100);
+@define-color bdcolorh rgb(166,81,64);
+@define-color tcolor rgb(254,215,163);
+*/
+
+/*samurai
+@define-color bgcolor #32323c;
+@define-color bdcolor #646464;
+@define-color bdcolorh #ffffff;
+@define-color tcolor #ffffff;
+*/
+
+
+* {
+    /* otf-font-awesome is required to be installed for icons */
+    font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
+    font-size: 17px;
+}
+
+window#waybar {
+    /*background-color: rgba(43, 48, 59, 0);*/
+    background-color: transparent;
+/*    border-bottom: 3px solid rgba(100, 114, 125, 0.5);*/
+/*    color: #371b70;*/
+    color: #ffffff;
+
+    transition-property: background-color;
+    transition-duration: .5s;
+}
+
+
+/*
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+window#waybar.empty {
+    background-color: transparent;
+}
+window#waybar.solo {
+    background-color: #FFFFFF;
+}
+*/
+
+window#waybar.termite {
+    background-color: #3F3F3F;
+}
+
+window#waybar.chromium {
+    background-color: #000000;
+    border: none;
+}
+
+button {
+    /* Use box-shadow instead of border so the text isn't offset */
+    box-shadow: inset 0 -3px transparent;
+    /* Avoid rounded borders under each button name */
+    border: none;
+    border-radius: 0;
+}
+
+/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
+button:hover {
+    background: inherit;
+    /*box-shadow: inset 0 -3px #ffffff;*/
+}
+
+/* you can set a style on hover for any module like this */
+#pulseaudio:hover {
+	border-color: @bdcolorh;
+}
+
+#workspaces button {
+    padding: 0 5px;
+    /*background-color: transparent;*/
+    background-color: @bgcolor;
+    border-radius: 15;
+	border-color: @bdcolor;
+    border-style: solid;
+	border-width: 2px;
+	margin-left:4px;
+	color: @tcolor;
+    margin-top:7px;
+    padding-top:0px;
+    padding-bottom:0px
+}
+
+#workspaces button:hover {
+    /*background: rgba(0, 0, 0, 0.3);*/
+    /*background-color: rgba(50,50,50,0.5);*/
+	border-color: @bdcolorh;
+
+}
+
+#workspaces button.focused {
+    background-color: #64727D;
+
+}
+
+#workspaces button.active {
+    border-color: @bdcolorh;
+
+
+}
+
+#workspaces button.urgent {
+    background-color: #eb4d4b;
+}
+
+#mode {
+    background-color: #64727D;
+    box-shadow: inset 0 -3px #ffffff;
+}
+
+#clock,
+#battery,
+#cpu,
+#memory,
+#disk,
+#temperature,
+#backlight,
+#network,
+#pulseaudio,
+#wireplumber,
+#custom-media,
+#tray,
+#mode,
+#idle_inhibitor,
+#scratchpad,
+#window,
+#power-profiles-daemon,
+#mpd {
+    padding: 0 5px;
+    color: #ffffff;
+}
+
+
+#window{
+/*	color:#5E4C3B;*/
+	background-color: @bgcolor;
+    border-radius: 15;
+	border-color: @bdcolor;
+    border-style: solid;
+	border-width: 2px;
+	margin-top:7px;
+	border-color: @bdcolor;
+	color: @tcolor;
+}
+
+#window:hover{
+	border-color: @bdcolorh;
+}
+
+#workspaces {
+    margin: 0 4px;
+}
+
+/* If workspaces is the leftmost module, omit left margin */
+.modules-left > widget:first-child > #workspaces {
+    margin-left: 0;
+}
+
+/* If workspaces is the rightmost module, omit right margin */
+.modules-right > widget:last-child > #workspaces {
+    margin-right: 0;
+}
+
+#clock {
+/*    background-color: #64727D;*/
+    background-color: @bgcolor;
+    border-radius: 15;
+	border-color: @bdcolor;
+    border-style: solid;
+	border-width: 2px;
+	margin-top:7px;
+	color: @tcolor;
+}
+#clock:hover {
+	border-color: @bdcolorh;
+}
+
+#battery {
+/*    background-color: #ffffff;*/
+    background-color: @bgcolor;
+    border-radius: 15;
+	border-color: @bdcolor;
+    border-style: solid;
+	border-width: 2px;
+	margin-top:7px;
+	color: @tcolor;
+}
+#battery:hover {
+	border-color: @bdcolorh;
+}
+
+#battery.charging, #battery.plugged {
+    color: #ffffff;
+    background-color: #26A65B;
+}
+
+@keyframes blink {
+    to {
+        background-color: #ffffff;
+        color: #000000;
+    }
+}
+
+/* Using steps() instead of linear as a timing function to limit cpu usage */
+#battery.critical:not(.charging) {
+    background-color: #f53c3c;
+    color: #ffffff;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: steps(12);
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#power-profiles-daemon {
+/*    padding-right: 15px;*/
+    background-color: @bgcolor;
+    border-radius: 15;
+	border-color: @bdcolor;
+    border-style: solid;
+	border-width: 2px;
+	margin-top:7px;
+	color: @tcolor;
+}
+#power-profiles-daemon:hover {
+	border-color: @bdcolorh;
+}
+
+#power-profiles-daemon.performance {
+    color: @tcolor;
+}
+
+#power-profiles-daemon.balanced {
+    color: @tcolor;
+}
+
+#power-profiles-daemon.power-saver {
+    color: @tcolor;
+}
+
+label:focus {
+    background-color: #000000;
+}
+
+#cpu {
+/*    background-color: #2ecc71;*/
+    background-color: @bgcolor;
+    border-radius: 15;
+	border-color: @bdcolor;
+    border-style: solid;
+	border-width: 2px;
+	margin-top:7px;
+	color: @tcolor;
+}
+#cpu:hover {
+	border-color: @bdcolorh;
+}
+#memory {
+/*    background-color: #9b59b6;*/
+    background-color: @bgcolor;
+    border-radius: 15;
+	border-color: @bdcolor;
+    border-style: solid;
+	border-width: 2px;
+	margin-top:7px;
+	color: @tcolor;
+}
+#memory:hover {
+	border-color: @bdcolorh;
+}
+
+#disk {
+    background-color: #964B00;
+}
+
+#backlight {
+/*    background-color: #90b1b1;*/
+    background-color: @bgcolor;
+    border-radius: 15;
+	border-color: @bdcolor;
+    border-style: solid;
+	border-width: 2px;
+    margin-top:7px;
+	color: @tcolor;
+}
+#backlight:hover {
+	border-color: @bdcolorh;
+}
+
+#network {
+    background-color: @bgcolor;
+    border-radius: 15;
+	border-color: @bdcolor;
+    border-style: solid;
+	border-width: 2px;
+	margin-top:7px;
+	color: @tcolor;
+}
+
+#network:hover {
+	border-color: @bdcolorh;
+}
+
+#network.disconnected {
+    background-color: #f53c3c;
+}
+
+#pulseaudio {
+    background-color: @bgcolor;
+    border-radius: 15;
+	border-color: @bdcolor;
+    border-style: solid;
+	border-width: 2px;
+	color: @tcolor;
+    margin-top:7px
+}
+
+
+#pulseaudio.muted {
+/*    background-color: #90b1b1;
+    color: #2a5c45;*/
+    background-color: #808080;
+    color:#ffffff;
+}
+
+#wireplumber {
+    background-color: #fff0f5;
+    color: #000000;
+}
+
+#wireplumber.muted {
+    background-color: #f53c3c;
+}
+
+#custom-media {
+    background-color: @bgcolor;
+    border-radius: 15;
+	border-color: @bdcolor;
+    border-style: solid;
+	border-width: 2px;
+	margin-top:7px;
+	color: @tcolor;
+    min-width: 100px;
+}
+
+#custom-media:hover{
+	border-color: @bdcolorh;
+}
+
+#custom-media.custom-spotify {
+/*    background-color: #66cc99;*/
+}
+
+#custom-media.custom-vlc {
+/*    background-color: #ffa000;*/
+}
+
+#temperature {
+/*    background-color: #f0932b;*/
+    background-color: @bgcolor;
+    border-radius: 15;
+	border-color: @bdcolor;
+    border-style: solid;
+	border-width: 2px;
+	margin-top:7px;
+	color: @tcolor;
+}
+#temperature:hover {
+	border-color: @bdcolorh;
+}
+
+#temperature.critical {
+    background-color: #eb4d4b;
+}
+
+#tray {
+	background-color: @bgcolor;
+    border-radius: 15;
+    border-color: @bdcolor;
+    border-style: solid;
+	border-width: 2px;
+	margin-top:10px;
+	padding-bottom:5px;
+	padding-top:5px;
+	color: @tcolor;
+}
+#tray:hover {
+	border-color: @bdcolorh;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: #eb4d4b;
+}
+
+#idle_inhibitor {
+    background-color: #2d3436;
+}
+
+#idle_inhibitor.activated {
+    background-color: #ecf0f1;
+    color: #2d3436;
+}
+
+#mpd {
+    background-color: #66cc99;
+    color: #2a5c45;
+}
+
+#mpd.disconnected {
+    background-color: #f53c3c;
+}
+
+#mpd.stopped {
+    background-color: #90b1b1;
+}
+
+#mpd.paused {
+    background-color: #51a37a;
+}
+
+#language {
+    background: #00b093;
+    color: #740864;
+    padding: 0 5px;
+    margin: 0 5px;
+    min-width: 16px;
+}
+
+#keyboard-state {
+    background: #97e1ad;
+    color: #000000;
+    padding: 0 0px;
+    margin: 0 5px;
+    min-width: 16px;
+}
+
+#keyboard-state > label {
+    padding: 0 5px;
+}
+
+#keyboard-state > label.locked {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+#scratchpad {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+#scratchpad.empty {
+	background-color: transparent;
+}
+
+#privacy {
+    padding: 0;
+}
+
+#privacy-item {
+    padding: 0 5px;
+    color: white;
+}
+
+#privacy-item.screenshare {
+    background-color: #cf5700;
+}
+
+#privacy-item.audio-in {
+    background-color: #1ca000;
+}
+
+#privacy-item.audio-out {
+    background-color: #0069d4;
+}
+
+#custom-powermenu {
+	background-color: rgba(50,50,50,0);
+	margin-top:10px;
+	margin-right:10px;
+	color:#e56363;
+	font-size:20px
+}
+
+
+#custom-wall {
+    background-color: rgba(0,0,0,0);
+    border-radius: 15;
+	border-color: rgba(0,0,0,0);
+    border-style: solid;
+	border-width: 2px;
+	margin-top:10px;
+	color: @tcolor;
+	font-size:17px;
+}
+
