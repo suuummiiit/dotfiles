@@ -1,0 +1,24 @@
+{
+	"pyprland": {
+		"plugins": ["scratchpads", "magnify"]
+	},
+	"scratchpads": {
+		"term":{
+			"command": "alacritty --class scratchpad",
+			"margin": 50
+		},
+		"pavu":{
+			"command": "pavucontrol",
+			"margin": 50,
+			"unfocus": "hide"
+		},
+		"mousepad":{
+			"command": "mousepad",
+			"margin": 50
+		},
+		"color":{
+			"command": "kcolorchooser",
+			"margin": 50
+		}
+	}
+}
