@@ -1,0 +1,65 @@
+[topright]
+enter_command = ["bash", "-c", "~/scripts/lock.sh"]
+locations = ["top_right"]
+size = 10
+timeout_ms = 750
+
+[topright.output]
+description = ""
+
+
+[screenshot]
+enter_command = ["bash", "-c", "~/scripts/ss.sh"]
+locations = ["top_left"]
+size = 10
+timeout_ms = 100
+
+[screenshot.output]
+description = ""
+
+
+
+[suspend]
+enter_command = ["bash", "-c", "~/scripts/suspend.sh"]
+locations = ["bottom_right"]
+size = 10
+timeout_ms = 10000
+
+[suspend.output]
+description = ""
+
+
+
+
+
+#[topleft]
+#enter_command = ["bash", "-c", "~/scripts/wall_slide.sh"]
+#locations = ["top_left"]
+#size = 10
+#timeout_ms = 250
+#[topleft.output]
+#description = ""
+
+#[bottomleft]
+#enter_command = ["bash", "-c", "~/scripts/rwall_slide.sh"]
+#locations = ["bottom_left"]
+#size = 10
+#timeout_ms = 250
+#[bottomleft.output]
+#description = ""
+
+
+
+
+
+
+
+#[topedge]
+#enter_command = ["hyprctl", "dispatch", "togglespecialworkspace", "magic"]
+#locations = ["top"]
+#size = 10
+#margin = 50  # Optional: add some margin so it doesn't trigger too easily
+#timeout_ms = 250
+
+#[topedge.output]
+#description = ""
