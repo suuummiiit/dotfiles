@@ -1,0 +1,224 @@
+/**
+ * Waybar configuration file defining the layout and behavior of the status bar.
+ * 
+ * Configures various modules including:
+ * - System information (CPU, memory, temperature, battery)
+ * - Media controls
+ * - Network status
+ * - Audio controls
+ * - Workspace and window management
+ * 
+ * Modules are organized into left, center, and right sections with custom 
+ * formatting, interactions, and visual representations.
+ */
+{
+    "margin-top" : 5,
+    "margin-left": 10,
+    "margin-right": 10,
+    "height" : 35,
+    "modules-left": [
+        "custom/wall",
+        "hyprland/workspaces",
+        "backlight",
+        "pulseaudio",
+        // "custom/nvidia",
+        "custom/media"
+        // "custom/player",
+        // "custom/weather"
+        
+    ],
+    "modules-center": [
+        "hyprland/window"
+    ],
+    "modules-right": [
+        "power-profiles-daemon",
+        "network",
+        "cpu",
+        "memory",
+        "temperature",
+        "battery",
+        "clock",
+        "tray",
+        "custom/powermenu"
+    ],
+    
+
+
+//     "custom/weather": {
+//     "exec": "${HOME}/.config/waybar/scripts/get_weather.sh Berlin+Germany",
+//     "return-type": "json",
+//     "format": "{}",
+//     "tooltip": true,
+//     "interval": 3600
+// },
+
+
+    // "custom/media": {
+    //     "format": "{icon} {}",
+    //     "escape": true,
+    //     "return-type": "json",
+    //     "max-length": 40,
+    //     "on-click": "playerctl play-pause",
+    //     "on-click-right": "playerctl stop",
+    //     "smooth-scrolling-threshold": 10, // This value was tested using a trackpad, it should be lowered if using a mouse.
+    //     "on-scroll-up": "playerctl next",
+    //     "on-scroll-down": "playerctl previous",
+    //     "exec": "$HOME/.config/waybar/scripts/mediaplayer.py 2> /dev/null", // Script in resources/custom_modules folder
+    // },
+    
+    
+    
+    "custom/media": {
+        "exec": "/usr/bin/python ~/.config/waybar/scripts/mediaplayer.py",
+        "return-type": "json",
+        "format": "[ {}]",
+        "max-length": 40,
+        "escape": true,
+        "tooltip": true,
+        "on-click": "playerctl play-pause",
+        "on-click-right": "playerctl stop",
+        "smooth-scrolling-threshold": 6, // This value was tested using a trackpad, it should be lowered if using a mouse.
+        "on-scroll-up": "playerctl previous",
+        "on-scroll-down": "playerctl next"
+    },
+
+    
+    
+	"hyprland/window": {
+		"max-length": 40,
+		"on-click" : "exec hyprctl dispatch togglespecialworkspace magic",
+        "on-click-middle": "exec ~/scripts/kill-active.sh",
+        "on-click-right": "exec wofi --show drun"
+
+    },
+    "hyprland/workspaces": {
+        "format": "{icon}",
+        "on-click": "activate",
+        //"format-icons": {
+        // "active": " "
+        //},
+        "sort-by-number": true,
+        "on-scroll-down": "hyprctl dispatch workspace e+1",
+        "on-scroll-up": "hyprctl dispatch workspace e-1"
+    },
+    "clock": {
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format-alt": "{:%Y-%m-%d}"
+        // "calendar": {
+        //             "mode"          : "year",
+        //             "mode-mon-col"  : 3,
+        //             "weeks-pos"     : "right",
+        //             "on-scroll"     : 1,
+        //             "format": {
+        //                       "months":     "<span color='#ffead3'><b>{}</b></span>",
+        //                       "days":       "<span color='#ecc6d9'><b>{}</b></span>",
+        //                       "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
+        //                       "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
+        //                       "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+        //                       }
+        //             },
+    },
+    "cpu": {
+        "format": "  {usage}%",
+        "tooltip": false
+    },
+    "memory": {
+        //"format": "  {}%"
+        "format": "  {}%"
+    },
+    "temperature": {
+        "critical-threshold": 80,
+        "format": "{icon} {temperatureC}°C",
+        // "format-icons": ["", "", ""]
+        "format-icons": ["", "", ""]
+    },
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon}  {capacity}%",
+        "format-full": "{icon}  {capacity}%",
+        "format-charging": "' {capacity}%",
+        "format-plugged": "  {capacity}%",
+        "format-alt": "{time} {icon}",
+        //"format-icons": ["", "", "", "", ""]
+        "format-icons": ["", "", "", "", ""]
+    },
+    "network": {
+        "format-wifi": "  {signalStrength}%",
+        "format-ethernet": "{ipaddr}/{cidr} ",
+        "tooltip-format": "{ifname} via {gwaddr} ",
+        "format-linked": "{ifname} (No IP) ",
+        "format-disconnected": " ⚠ ",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}",
+        "on-click-right":"xdg-open http://detectportal.firefox.com/"
+    },
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        // "format-bluetooth": "{volume}% {icon} {format_source}",
+        // "format-bluetooth-muted": " {icon} {format_source}",
+        "format-bluetooth": "{volume}% ",
+        "format-bluetooth-muted": "󰖁 ",
+        "format-muted": "󰖁 {format_source}",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+        "on-click-right": "pypr toggle pavu && hyprctl dispatch bringactivetotops"
+    },
+    "backlight": {
+        // "device": "acpi_video1",
+        // "format-icons": ["☼", "☀"],
+        //"format-icons": ["∘", "◯", "◉", "⬤"],
+        "format-icons": ["󰃞", "󰃝", "󰃟", "󰃠"],
+        "format": "  {icon} {percent}%"
+    },
+    "tray": {
+        // "icon-size": 21,
+        "spacing": 10
+    },
+   "power-profiles-daemon": {
+      "format": "{icon}",
+      "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+      "tooltip": true,
+      "format-icons": {
+        "default": " ",
+        "performance": " ",
+        "balanced": " ",
+        "power-saver": " "
+      }
+    },
+
+
+    "custom/nvidia": {
+            "exec": "nvidia-smi --query-gpu=utilization.gpu,temperature.gpu --format=csv,nounits,noheader | sed ' s/\\([0-9]\\+\\), \\([0-9]\\+\\)/\\1%   \\2°C/g'",
+            "format": "{}",
+            "interval": 2
+    },
+
+
+    "custom/powermenu": {
+        "format": "  ",
+        "tooltip": false,
+        "on-click": "exec ~/.config/rofi/scripts/powermenu.sh",
+        "on-click-right": "exec ~/scripts/lock.sh",
+        "on-click-middle": "exec ~/scripts/suspend.sh"
+    },
+    "custom/wall": {
+        "format": " ",
+        //"format": "󰣇 ",
+        "tooltip": false,
+        "on-click": "exec kitty",
+        "on-click-right": "exec thunar",
+        "on-click-middle":"exec pypr toggle term && hyprctl dispatch bringactivetotops"
+    }
+
+
+}
